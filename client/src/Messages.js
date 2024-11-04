@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState  } from 'react'
 import axios from 'axios'
-import { useState } from 'react'
 
 function Messages() {
   const [messages, setMessages] = useState([])
@@ -10,10 +9,7 @@ function Messages() {
     return () => fetchMessages()
   }, []);
 
-  /**
-   * @description fetch messages from the server
-   * @returns {object} - The response object in JSON format
-   */
+  // Fetch messages from the server
   const fetchMessages = async () => {
     const response = await axios.get('http://172.104.246.147:5000/messages')
     if (!response.data) {
@@ -23,20 +19,14 @@ function Messages() {
     console.log(response.data)
   };
 
-
+  // Send a message to the server
   const sendMessage = async () => {
-    if (message === '') {
-      return alert('Message cannot be empty')
-    }
-    /**
-     * @description send message to the server
-     * @returns {object} - The response object in JSON format
-     */
+    if (message === '') return alert('Message cannot be empty');
     await axios.post('http://172.104.246.147:5000/messages', {
       messageText: message
     })
     setMessage('')
-    fetchMessages()
+    fetchMessages();
   };
 
 
