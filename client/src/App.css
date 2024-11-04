@@ -1,0 +1,124 @@
+.App {
+  container-type: inline-size;
+  text-align: center;
+  place-items: center;
+  padding: 50px;
+}
+
+form {
+  display: flex;
+  /* flex-direction: column; */
+  width: 450px;
+  padding: 40px 10px;
+  margin: 5px;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+form fieldset {
+  border: none;
+  padding: 4px 6px;
+  width: auto;
+}
+
+form fieldset legend {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+fieldset input {
+  padding: 10px 60px;
+  border-radius: 5px;
+  border: 1px solid #0186a4;
+}
+
+fieldset button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 4px;
+  border: none;
+  background: #00fbcd;
+  color: #000000;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+  background: #0186a4;
+}
+
+ul {
+  display: inline-block;
+  position: relative;
+  justify-content: space-between;
+  width: 400px;
+  left: 0;
+  padding: 6px;
+  text-align: left;
+}
+
+ul p {
+  text-align: left;
+  padding: 5px;
+  margin: 0;
+  padding: 10px 20px;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+fieldset:nth-child(odd) > p {
+  background: #00fbcd;
+  margin: 8px 0;
+}
+
+legend {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+@container (width < 600px) {
+  .App {
+    padding: 10px 30px;
+  }
+  form {
+    flex-direction: column;
+    padding: 20px 35px;
+    width: 100%;
+  }
+
+  form fieldset {
+    padding: 4px 6px;
+    width: 100%;
+  }
+
+  form fieldset legend {
+    margin-bottom: 10px;
+    text-align: left;
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  form input {
+    margin-bottom: 10px;
+  }
+
+  form button {
+    width: 100%;
+    margin: 0;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  ul p {
+    width: auto;
+  }
+
+
+
+}
