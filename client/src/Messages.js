@@ -37,7 +37,8 @@ function Messages() {
           <legend htmlFor='message'>Message</legend>
         <input
           type='text'
-          value={message}
+            value={message}
+            placeholder='Enter a message'
           onChange={(e) => setMessage(e.target.value)}
           />
           <button type='button' onClick={sendMessage}>Send</button>
