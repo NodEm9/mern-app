@@ -4,9 +4,13 @@ import mongoose from "mongoose";
 const MessageSchema = new mongoose.Schema({
   messageText: {
     type: String,
-    required: [true, 'You need to enter message text.']
-  }
+    required: true,
+  },
+},
+{
+  timestamps: true
 });
+
 
 // Create a model from the schema
 const MessageModel = mongoose.model('Message', MessageSchema);
