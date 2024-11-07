@@ -7,30 +7,57 @@
 
 form {
   display: flex;
-  width: 450px;
-  padding: 40px 10px;
+  flex-direction: column;
+  width: min(600px, 100%);
   margin: 5px;
   border-radius: 2px;
   justify-content: center;
   align-items: center;
   text-align: left;
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
+  background: #ffffff;
+}
+
+form  .form-header {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  padding: 5px 0;
+  margin: 0;
+  margin-bottom: 20px;
+  background: hsl(206, 99%, 65%);
+}
+
+.form-header img {
+  width: 50px;
+  height: 50px;
+}
+
+.form-header h2 {
+  font-size: 2rem;
+  margin: 0;
+  font-style: italic;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
 }
 
 form fieldset {
+  display: flex;
   border: none;
-  padding: 4px 6px;
+  padding: 20px 6px;
   width: 100%;
+  place-content: center;
 }
 
 form fieldset legend {
   font-size: 1rem;
   margin-right: 10px;
+  display: none;
 }
 
 input {
   width: 70%;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 5px;
   border: 1px solid #0186a4;
 }
@@ -52,7 +79,8 @@ button:hover {
 }
 
 ul {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
   position: relative;
   justify-content: space-between;
   width: 400px;
@@ -69,7 +97,7 @@ ul p {
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
-p small{
+p small {
   background: hsl(206, 99%, 65%);
   background-blend-mode: multiply;
   padding: 5px;
@@ -84,7 +112,7 @@ p span {
   padding: 10px 20px;
 }
 
-fieldset:nth-child(odd) > p {
+fieldset:nth-child(odd)>p {
   background: hsl(203, 100%, 87%);
   margin: 8px 0;
 }
@@ -110,16 +138,23 @@ legend {
 
 @container (width < 600px) {
   .App {
-    padding: 10px 30px;
+    padding: 10px 20px;
   }
+
   form {
     flex-direction: column;
-    padding: 20px 35px;
     width: 100%;
   }
 
+  form .form-header {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 10px;
+  }
+
   form fieldset {
-    padding: 4px 6px;
+    flex-direction: column;
+    padding: 20px 35px;
     width: 100%;
   }
 
@@ -130,8 +165,8 @@ legend {
     margin-left: 0;
   }
 
- input {
-  width: 84%;
+  input {
+    width: 84%;
     margin-bottom: 10px;
   }
 
