@@ -40,16 +40,15 @@ fieldset button {
   border-radius: 5px;
   margin-left: 4px;
   border: none;
-  background: #00fbcd;
+  background: hsl(206, 99%, 65%);
   color: #000000;
   font-size: 1rem;
   cursor: pointer;
-  transition: opacity .3s ease;
+  transition: opacity 1s ease-in-out;
 }
 
 button:hover {
   opacity: 0.8;
-  background: #0186a4;
 }
 
 ul {
@@ -63,21 +62,50 @@ ul {
 }
 
 ul p {
+  display: flex;
+  flex-direction: column;
   text-align: left;
-  padding: 5px;
   margin: 0;
-  padding: 10px 20px;
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
+p small{
+  background: hsl(206, 99%, 65%);
+  background-blend-mode: multiply;
+  padding: 5px;
+  text-align: right;
+  color: #000000;
+  font-weight: 500;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+p span {
+  padding: 10px 20px;
+}
+
 fieldset:nth-child(odd) > p {
-  background: #00fbcd;
+  background: hsl(203, 100%, 87%);
   margin: 8px 0;
 }
 
 legend {
   font-size: 1rem;
   margin-bottom: 10px;
+}
+
+.error {
+  background: red;
+  color: #ffffff;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+}
+
+.success {
+  background: green;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 10px;
 }
 
 @container (width < 600px) {
