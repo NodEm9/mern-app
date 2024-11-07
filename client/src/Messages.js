@@ -1,9 +1,18 @@
-import React, { useEffect, useState  } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
+import formattedDate from './utils/formatDate'
+import messageSound from './assets/sounds/tap-notification.mp3'
 
 function Messages() {
   const [messages, setMessages] = useState([])
   const [message, setMessage] = useState('')
+  const [err, setErr] = useState('')
+  const [success, setSuccess] = useState('')
+
+  const [createdAt, setCreatedAt] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
+
+  const errRef = useRef(null);
 
   useEffect(() => {
     return () => fetchMessages()
@@ -12,45 +21,63 @@ function Messages() {
   // Fetch messages from the server
   const fetchMessages = async () => {
     const response = await axios.get('http://172.104.246.147:5000/messages')
-    if (!response.data) {
-      return setMessages(['No messages'])
-    }
-    setMessages(response.data)
-    console.log(response.data)
+    if (!response.data) return setMessages(['No messages']);
+    const date = await response.data[0]?.createdAt;
+    setCreatedAt(date);
+    setMessages(response.data);
   };
 
   // Send a message to the server
-  const sendMessage = async () => {
-    if (message === '') return alert('Message cannot be empty');
-    await axios.post('http://172.104.246.147:5000/messages', {
-      messageText: message
-    })
-    setMessage('')
-    fetchMessages();
-  };
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    if (message === '') {
+      setErr('You must enter a message');
+    } else {
+      const response = await axios.post('http://172.104.246.147:5000/messages',
+        {
+          messageText: message
+        });
+      
+      if (!response.data) setErr(response.data?.error);
 
+      // Play a sound when the message is sent
+        const audion = new Audio(messageSound);
+        audion.play();
+        setSuccess('Message sent ✅');
+
+  
+      fetchMessages();
+      setMessage('');
+      if (isFocused) setErr('');
+    }
+    errRef.current?.focus();
+  };
 
   return (
     <>
-      <form>
+      <div ref={errRef}>{err && err ? <p className='error'>{err}</p> : null}</div>
+      <div>{success ? <p className='success'>{success}</p> : null}</div>
+      <form onSubmit={sendMessage}>
         <fieldset>
           <legend htmlFor='message'>Message</legend>
-        <input
-          type='text'
+          <input
+            type='text'
             value={message}
             placeholder='Enter a message'
-          onChange={(e) => setMessage(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onChange={(e) => setMessage(e.target.value)}
+            className='form-control'
           />
-          <button type='button' onClick={sendMessage}>Send</button>
-          </fieldset>
- 
+          <button type='submit'>Send</button>
+        </fieldset>
       </form>
       <ul>
         {messages.map((message, index) => (
           <fieldset key={index}>
             <legend>Message {index + 1}</legend>
             <p>
-            {message.messageText}
+              <small>{formattedDate(message.createdAt)}</small>
+              <span>{message.messageText}</span>
             </p>
           </fieldset>
         ))}
