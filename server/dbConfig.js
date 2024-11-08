@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 function db (){
-  mongoose.connect(process.env.MONGO_URI, { dbName: 'mern-app' });
+  mongoose.connect(process.env.MONGO_URI, { dbName: 'internal-com-message' });
 
   mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');

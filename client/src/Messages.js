@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import formattedDate from './utils/formatDate'
 import messageSound from './assets/sounds/tap-notification.mp3'
 import logo from './assets/img/chat-logo.svg'
-import instance from './utils/config/axiosConfig'
+import instance from './config/axiosConfig'
 
 const axios = instance
 
